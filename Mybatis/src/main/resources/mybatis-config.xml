@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+   <!-- 读取jdbc.properties -->
+  <properties resource="jdbc.properties"></properties>
+  
+    <!-- 日志信息打印 -->
+   <settings>
+      <setting name="logImpl" value="LOG4J"/>
+   </settings>
+
+   <!-- 类型别名的设置
+      <typeAliases>
+       <typeAlias type="com.web.entity.Student" alias="Student"/>
+   </typeAliases>
+    -->
+  <typeAliases>
+      <package name="com.hxzy.entity"/>
+  </typeAliases>
+
+  <!-- 环境 -->
+  <environments default="development">
+    <environment id="development">
+    
+      <!-- jdbc决定事务作用域和控制方式的事务管理器（TransactionManager）-->
+      <transactionManager type="JDBC"/>
+      
+              <!-- 数据源的配置     POOLED：线程池-->
+		      <dataSource type="POOLED">
+		      
+		         <!-- 连接数据库的驱动 -->
+		        <property name="driver" value="${driver}"/>
+		        <property name="url" value="${url}"/>
+		        <property name="username" value="${username}"/>
+		        <property name="password" value="${password}"/>
+		      </dataSource>
+    </environment>
+  </environments>
+  
+  <!-- 映射文件的配置 -->
+  <mappers>
+      <mapper resource="com/hxzy/mapping/StudentMapper.xml"/>
+      <mapper resource="com/hxzy/mapping/ClassNameMapper.xml"/>
+  </mappers>
+</configuration>
